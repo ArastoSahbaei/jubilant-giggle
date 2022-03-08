@@ -1,13 +1,12 @@
-import { utils, Wallet } from "ethers"
 import { WALLET_PRIVATE_KEY } from "../mock/constants.js"
-import { humanInfo } from "../functions/humanInfo.js"
+import { utils, Wallet } from "ethers"
 import { getProvider } from "./getProvider.js"
+import { humanInfo } from "../functions/humanInfo.js"
 
 export const submitHumanInfo = async () => {
    const provider = getProvider()
    const wallet = new Wallet(WALLET_PRIVATE_KEY, provider)
    const signer = wallet.connect(provider)
-   const recipient = '0xfe4F5145f6e09952a5ba9e956ED0C25e3Fa4c7F1'
 
    try {
       const transaction = await signer.sendTransaction({

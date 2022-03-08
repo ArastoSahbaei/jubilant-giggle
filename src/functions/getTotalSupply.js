@@ -1,7 +1,7 @@
+import { DERC20_CONTRACT_ADDRESS } from '../mock/constants.js'
 import { Contract, utils } from 'ethers'
-import { DERC20_ABI } from '../../abis/DERC20_ABI.js'
-import { DERC20_CONTRACT_ADDRESS } from '../Constants.js'
 import { getProvider } from './getProvider.js'
+import { DERC20_ABI } from '../../abis/DERC20_ABI.js'
 
 export const getTotalSupply = async () => {
   const provider = getProvider()
