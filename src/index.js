@@ -1,11 +1,13 @@
-import { providers, Contract, utils } from 'ethers'
+import { DERC20_CONTRACT_ADDRESS, WALLET_ADDRESS } from './mock/constants.js'
+import { Contract, utils } from 'ethers'
+import { submitHumanInfo } from './functions/submitHumanInfo.js'
+import { readHumanInfo } from './functions/readHumanInfo.js'
+import { getProvider } from './functions/getProvider.js'
 import { DERC20_ABI } from '../abis/DERC20_ABI.js'
-import { DERC20_CONTRACT_ADDRESS, MORALIS_API, WALLET_ADDRESS } from './Constants.js'
-import { createTransaction } from './functions/createTransaction.js'
 
-const provider = new providers.JsonRpcProvider(MORALIS_API)
+const provider = getProvider()
 
-async function init() {
+const init = async () => {
   const maticBalance = await provider.getBalance(WALLET_ADDRESS)
   const tokenContract = new Contract(DERC20_CONTRACT_ADDRESS, DERC20_ABI, provider)
   const tokenBalance = await tokenContract.balanceOf(WALLET_ADDRESS)
@@ -13,45 +15,24 @@ async function init() {
   console.log("DERC20 balance: ", utils.formatUnits(tokenBalance))
 }
 
-function submitHumanInfo() {
-  return true
-}
-
-function readHumanInfo() {
-  return true
-}
-
-function sendGLODistribution() {
+const sendGLODistribution = () => {
   // get all wallets that are legit and then send the transaction
   // How do i send multiple transacations at the same time?
 
-  //determineDelegationAmount
+  //1. determine validated(KYC) wallets to send the tokens
+  //2. determine token amount to distribute
+  //3. create transactions to all validated wallets with the calculated token amount
+  //4.
+  //5. loop weekly?
+
   return true
 }
 
-export function humanInfo() {
-  let johnDoe = {
-    user123: {
-      name: 'John Doe Of Denham',
-      dob: '10-10-1980',
-      nationality: 'NL',
-      email: 'john.doe@denham.com',
-      tel: '123',
-      cob: 'abc',
-      pob: 'def',
-      country: 'ghi',
-      city: 'jkl',
-      street: 'mno',
-      nin: 'pqr',
-      idn: 'stu',
-      kyc_date: new Date().toISOString().split('T')[0],
-      wallet: '0xD6B2fed043153cC9A4698773b8721237626ecF29',
-    }
-  }
-  return johnDoe
-}
-
-await createTransaction()
 init()
+
+await submitHumanInfo()
+
+const transactionHashId = '0x07d69381f5ec165d9f5344b7fb87c1ebc61925c608d8ed80df0f258b5d68f559'
+readHumanInfo(transactionHashId)
 
 
