@@ -10,7 +10,7 @@ export const sendGLODistribution = async () => {
    const transactionHashId = '0x07d69381f5ec165d9f5344b7fb87c1ebc61925c608d8ed80df0f258b5d68f559'
    const humanData = await readHumanInfo(transactionHashId)
    if (validateKYC(humanData)) {
-      distributeWeeklySeigniorange(humanData.user123.wallet, distributionAmount)
+      distributeWeeklySeigniorange(humanData.user123.wallet, await distributionAmount)
    }
 
    // get all wallets that are legit and then send the transaction
