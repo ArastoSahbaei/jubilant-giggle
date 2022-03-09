@@ -1,10 +1,10 @@
 {
-  "name": "gloweb3challenge-ethersjs",
+  "name": "hidden",
 	"type": "module",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://gitlab.com/garmglo/gloweb3challenge-ethersjs.git",
-  "author": "gglucass <garm.lucassen@gmail.com>",
+  "repository": "hidden",
+  "author": "hidden",
   "license": "MIT",
   "dependencies": {
     "ethers": "^5.5.4"
