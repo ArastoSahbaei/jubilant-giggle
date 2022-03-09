@@ -1,12 +1,13 @@
-import { WALLET_PRIVATE_KEY } from "../mock/constants.js"
-import { utils, Wallet } from "ethers"
+import { getDistributionWallet } from "./getDistributionWallet.js"
 import { getProvider } from "./getProvider.js"
 import { humanInfo } from "../functions/humanInfo.js"
+import { getSigner } from "./getSigner.js"
+import { utils } from "ethers"
 
 export const submitHumanInfo = async () => {
    const provider = getProvider()
-   const wallet = new Wallet(WALLET_PRIVATE_KEY, provider)
-   const signer = wallet.connect(provider)
+   const wallet = getDistributionWallet(provider)
+   const signer = getSigner(wallet, provider)
 
    try {
       const transaction = await signer.sendTransaction({
@@ -16,7 +17,7 @@ export const submitHumanInfo = async () => {
          gasLimit: utils.hexlify(1000000),
          data: utils.toUtf8Bytes(JSON.stringify(humanInfo()))
       })
-      console.log(transaction)
+      console.log(`Human Data Sucessfully Submitted. HASH: ${transaction.hash}`)
    } catch (error) {
       console.error(error)
    }

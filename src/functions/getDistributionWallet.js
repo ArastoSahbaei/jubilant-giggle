@@ -1,9 +1,7 @@
 import { WALLET_PRIVATE_KEY } from "../mock/constants.js"
-import { getProvider } from "./getProvider.js"
 import { Wallet } from "ethers"
 
-export const getDistributionWallet = () => {
-   const provider = getProvider()
+export const getDistributionWallet = (provider) => {
    const wallet = new Wallet(WALLET_PRIVATE_KEY, provider)
    return wallet
 }

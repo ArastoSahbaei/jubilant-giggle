@@ -3,11 +3,12 @@ import { getDistributionWallet } from "./getDistributionWallet.js"
 import { Contract, ethers } from "ethers"
 import { getProvider } from "./getProvider.js"
 import { DERC20_ABI } from "../../abis/DERC20_ABI.js"
+import { getSigner } from './getSigner.js'
 
 export const distributeWeeklySeigniorange = async (eligibleWallets, amount) => {
    const provider = getProvider()
-   const wallet = getDistributionWallet()
-   const signer = wallet.connect(provider)
+   const wallet = getDistributionWallet(provider)
+   const signer = getSigner(wallet, provider)
    const tokenContract = new Contract(DERC20_CONTRACT_ADDRESS, DERC20_ABI, signer)
    const numberOfTokens = ethers.utils.parseUnits(amount.toString(), 18)
 
