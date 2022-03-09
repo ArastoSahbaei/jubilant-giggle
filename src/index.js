@@ -1,5 +1,6 @@
 import { DERC20_CONTRACT_ADDRESS, WALLET_ADDRESS } from './mock/constants.js'
 import { sendGLODistribution } from './functions/sendGLODistribution.js'
+import { submitHumanInfo } from './functions/submitHumanInfo.js'
 import { Contract, utils } from 'ethers'
 import { getProvider } from './functions/getProvider.js'
 import { DERC20_ABI } from '../abis/DERC20_ABI.js'
@@ -13,7 +14,7 @@ const init = async () => {
   console.log("MATIC balance: ", utils.formatEther(maticBalance))
   console.log("DERC20 balance: ", utils.formatUnits(tokenBalance))
 
-  /* await submitHumanInfo() */
+  await submitHumanInfo()
   sendGLODistribution()
 }
 
